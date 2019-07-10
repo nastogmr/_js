@@ -1,1194 +1,2363 @@
-const prefix ="_";
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 const client = new Discord.Client();
 
-client.on('ready', () => {
- console.log("Bot Online"); 
-console.log("log");
+client.on('ready',  () => {
+  console.log('By:M7md');
 });
 
-
-
-
-
-
-
-
-
- client.on('message', message => {
-    if (message.content.startsWith("_الرابط")) {
-
-  message.channel.createInvite({
-        thing: true,
-        maxUses: 2,
-        maxAge: 86400
-    }).then(invite =>
-      message.author.sendMessage(invite.url)
-    )
-  message.channel.send("**تم ارسال الرابط **")
-
-message.author.send(`**مدة الرابط : يـوم
-عدد استخدامات الرابط : 2**`)
-
-
-    }
-});
- 
-client.on('message', msg => {
-if (msg.content.startsWith(prefix + 'cal')) {
-  let args = msg.content.split(" ").slice(1);
-      const question = args.join(' ');
-  if (args.length < 1) {
-      msg.reply('**من فضلك .. قم بكتابة سؤال **.');
-} else {    let answer;
-  try {
-      answer = math.eval(question);
-  } catch (err) {
-      return msg.reply(`Error: ${err}`);
-  }
-
-  const embed = new Discord.RichEmbed()
-  .setThumbnail('https://banner2.kisspng.com/20180215/ade/kisspng-office-supplies-animation-calculator-5a85e764e3aa68.4914103215187249649325.jpg')
-.setDescription(`**
- السؤال يقولك :thinking:  : ${question}
-
- طبعا الاجابة :writing_hand: : ${answer}**
-`)
-  msg.channel.send(embed)
-  }
-};
-});
- 
- 
- 
- 
- 
- 
- 
- 
-
-client.on('message', msg => {
-    if(msg.content.startsWith('!link')) {
-    if(msg.channel.type === 'dm') return;
-const user = msg.mentions.users.first();
-if(!user) return msg.channel.send('``' + '**قم بتحديد بوت**' + '``')
-if(!user.bot) return msg.reply('\`منشن بوت\`');
-msg.channel.send(`**Bot InviteURL : ** https://discordapp.com/oauth2/authorize?client_id=${user.id}&scope=bot&permissions=384064`)
-    }
-});
-  
- 
- 
- 
+var prefix = '_';
 
 client.on('message', message => {
-            if(!message.channel.guild) return;
-let args = message.content.split(' ').slice(1).join(' ');
-if (message.content.startsWith('!bcall')){
- if (message.author.id !== 'ايديك') return message.reply('** هذا الأمر قفط لصاحب البوت و شكراًً **')
- if(!message.author.id === 'ايديك') return;
-message.channel.sendMessage('جار ارسال الرسالة |✅')
-client.users.forEach(m =>{
-m.sendMessage(args)
-})
-}
-});
- 
- 
- 
- 
- 
- 
- client.on('message' , function (message){
-      var token = 'NTk4NDEyMTQ2NzkxMDIyNTky.XSWVjg.anhqHtS0KbDOyNp9krhtRdu45Ho'; // التوكن هنا بس
-      if(message.content === '!restart') {
-if(message.author.id !== 'ايديك') return message.reply('**الامر خاص بـ صاحب البوت وشكرا**');
-          client.destroy();
-          client.login(token) // لا تغيرها
-var time = 7200000;
-client.setInterval(function() {
-    client.destroy();
-    client.login(token) // لا تغيرها
-  }, time);
-}
-})
-
-
-
-
-
-client.on('message', message => {
-    if(message.content == '_bans'){
-        message.guild.fetchBans().then(bans => {
-            bans.forEach(user => {
-               message.channel.send('\`#\` <@'+ user.id + '>');
-            });
-        });
-    }
-});
-  
-  
-
-
-  
-  
- const snekfetch = require("snekfetch");
-  client.on('message', async message => {
-if(message.author.bot) return;
-if (message.channel.guild) {
-if (message.content.startsWith(prefix + `!cat`)) {
-            const { body } = await snekfetch.get("http://aws.random.cat/meow");
-            return message.channel.send({ file: body.file });
-}}});
-  
-  
- 
- 
- client.on("message", message => {
-    if (message.content.match(/([A-Z0-9]|-|_){24}\.([A-Z0-9]|-|_){6}\.([A-Z0-9]|-|_){27}|mfa\.([A-Z0-9]|-|_){84}/gi)) {
-        if(!message.guild.members.get(client.user.id).hasPermission('MANAGE_MESSAGES')) return message.channel.send('**I need Permission \`MANAGE_MESSAGE\`To delete Tokens**')
-        message.delete();
-        message.reply(`مخك وين ترسل التوكن لحول`);
-        return;
-    }
-                              if(message.channel.type === "dm"){
-    if (message.content.match(/([A-Z0-9]|-|_){24}\.([A-Z0-9]|-|_){6}\.([A-Z0-9]|-|_){27}|mfa\.([A-Z0-9]|-|_){84}/gi)) {
-        message.delete();
-        message.reply(`مخك وين ترسل التوكن لحول`);
-        return;
-    }
-}
-});
-  
- 
- client.on('message',async message => {
-  let mention = message.mentions.members.first();
-  let acRoom = client.channels.get('483662159277064197');
-  if(message.content.startsWith(prefix + "رفض")) {
-  if(message.guild.id !== '470478928947970048') return;
-  if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return;
-  if(!mention) return message.reply("منشن شخص");
-  acRoom.send(`**${mention} تم رفضك للاسف**`)
-  }
-});
- 
- 
- 
-
- 
- 
- 
- 
- client.on('guildCreate', guild => {
-client.channels.get("596659522257420307").send(`:white_check_mark: **${client.user.tag} دخل سيرفر جديد
-Server name: __${guild.name}__
-Server owner: __${guild.owner}__
-Server id: __${guild.id}__ 
-Server Count: __${guild.memberCount}__**`)
-});
-client.on('guildDelete', guild => {
-  client.channels.get("596659522257420307").send(`:negative_squared_cross_mark: **${client.user.tag} طلع من سيرفر
-Server name: __${guild.name}__
-Server owner: __${guild.owner}__
-Server id: __${guild.id}__ 
-Server Count: __${guild.memberCount}__**`)
-});
- 
- 
- 
- 
- 
-const afk = require('./afk.json');
-client.on('message',async rebel => {
-      if(rebel.author.bot) return;
-  if (afk[rebel.author.id]) {
-    delete afk[rebel.author.id];
-    if (rebel.member.nickname === null) {
-      msg.channel.send("أهلا بك , <@"+rebel.author.id+"> أنأ **أحاول** أن أزيل عنك الأفك.");     } else {
-      rebel.member.setNickname(rebel.member.nickname.replace(/(\[AFK\])/,''));
-      rebel.channel.send("أهلا بك , <@"+rebel.author.id+"> تم فك عنك الأفك بسبب رجوعك."); 
-    }
-    fs.writeFile("./afk.json", JSON.stringify(afk), (err) => {if (err) console.error(err);});
-} else {
-    if (rebel.content.startsWith(prefix + 'afk ')||rebel.content === prefix + 'afk') {
-      rebel.member.setNickname("[AFK] " + rebel.member.displayName);
-      let args1 = rebel.content.split(' ').slice(1);
-      if (args1.length === 0) {
-        afk[rebel.author.id] = {"reason": true}; 
-        rebel.reply("** لقد وضعتك بوضع الأفك **")
-      } else {
-        afk[rebel.author.id] = {"reason": args1.join(" ")}; // with reason
-        rebel.reply("لقد أضفتك للأفك بسبب "+ args1.join(" ") + ".")
-      }
-      fs.writeFile("./afk.json", JSON.stringify(afk), (err) => {if (err) console.error(err);});   
-  }
-}
-         var mentionned = rebel.mentions.users.first();
-if(rebel.mentions.users.size > 0) return ;
-if (afk[rebel.mentions.users.first().id]) {
-if (afk[rebel.mentions.users.first().id].reason === true) {
-rebel.channel.send(`**<@!${mentionned.id}> مأفك** `);
-}else{
-rebel.channel.send(`**<@!${mentionned.username}> مأفك , سبب الأفك \n ${afk[rebel.mentions.users.first().id].reason}**`);
-}
-} 
-});
- 
- 
- 
- 
- client.on('message', async ReBeLL => {
-if(ReBeLL.author.bot) return;
-if (ReBeLL.channel.guild) {
-if (ReBeLL.content.startsWith(prefix + `8ball`)) {
-    let argsReBeL = ReBeLL.content.split(' ').slice(1).join(' ');
-    let authorReBeL = ReBeLL.author.username;
-
-    // https://en.wikipedia.org/wiki/Magic_8-Ball
-    let ReBeL = [
-        //إجآبآت إجآبيه
-"هذا مؤكد.",
-        "إنه بالتأكيد كذلك" ,
-        "بدون أدنى شك.",
-        "نعم بالتأكيد.",
-        "يمكنك الاعتماد عليه.",
-        "كما أرى أنه نعم.",
-        "على الأرجح.",
-        "توقعات جيدة.",
-        "نعم فعلا.",
-        "وتشير الدلائل إلى نعم.",
-
-        // إجابات غير ملتزمة
-        "الرد المحاولة مرة أخرى ضبابية.",
-        "اسأل مرة اخرى لاحقا.",
-        "الأفضل أن لا أقول لكم الآن.",
-        "لا يمكن التنبؤ الآن.",
-        "التركيز والمحاولة مرة أخرى." ,
-
-        // إجابات سلبية
-        "لا تعتمد على." ,
-        "ردي هو لا.",
-        "وتقول مصادري لا.",
-        "أوتلوك ليس جيد بما فيه الكفاية.",
-        "مشكوك فيه جدا."
-    ]
-    let randomReBeL = Math.floor(Math.random() * ReBeL.length);
-
-    if (!argsReBeL) return ReBeLL.reply("ask him something.");
-    ReBeLL.channel.send(`\:8ball\: | ${ReBeL[randomReBeL]} **${authorReBeL}**`);
-}}});
-
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- client.on('message', message => {
-if(message.content.startsWith('_مستخدم') ) {
-     if(!message.channel.guild) return message.reply('** This command only for servers **')
-          var args = message.content.split(" ").slice(1);
-    let sent = 0
-    let count = 1;
-    
-      if(args){
-client.users.filter(u => u.discriminator == args[0]).forEach(u => {
-    if(sent > 4){
-     return
-    }
-    sent = sent + 1
-      message.channel.send(`
-
-      ** ${count}➥ ${u.tag}**
-         
-      `)
-      count++;
-})
-}
-}
-if(message.content ===('_مستخدم') ) {
-     if(!message.channel.guild) return message.reply('** This command only for servers **')
-  let sent = 0
-    let count = 1;
-          
-
-client.users.filter(u => u.discriminator == message.author.discriminator).forEach(u => {
-    if(sent > 4){
-        return
-    }
-    sent = sent + 1
-      message.channel.send(`
-
-      ** ${count}➥ ${u.tag}**
-         
-      `)
-      count++;
-})
-}
-});
- 
- 
-
- 
- 
- 
-client.on('message',async message => {
-  var room;
-  var title;
-  var duration;
-  var gMembers;
-  var filter = m => m.author.id === message.author.id;
-  if(message.content.startsWith(prefix + "giveaway")) {
-     //return message.channel.send(':heavy_multiplication_x:| **هذا الامر معطل حاليا.. ``حاول في وقت لاحق``**');
-    if(!message.guild.member(message.author).hasPermission('MANAGE_GUILD')) return message.channel.send(':heavy_multiplication_x:| **يجب أن يكون لديك خاصية التعديل على السيرفر**');
-    message.channel.send(`:eight_pointed_black_star:| **منشن الروم الذي تريد به القيف اواي**`).then(msgg => {
-      message.channel.awaitMessages(filter, {
-        max: 1,
-        time: 20000,
-        errors: ['time']
-      }).then(collected => {
-        let room = message.guild.channels.find('giveaway', collected.first().content);
-        if(!room) return message.channel.send(':heavy_multiplication_x:| **لم اقدر على ايجاد الروم المطلوب**');
-        room = collected.first().content;
-        collected.first().delete();
-        msgg.edit(':eight_pointed_black_star:| **اكتب مدة القيف اواي**').then(msg => {
-          message.channel.awaitMessages(filter, {
-            max: 1,
-            time: 20000,
-            errors: ['time']
-          }).then(collected => {
-            if(isNaN(collected.first().content)) return message.channel.send(':heavy_multiplication_x:| **يجب عليك ان تحدد وقت زمني صحيح.. ``يجب عليك اعادة كتابة الامر``**');
-            duration = collected.first().content * 60000;
-            collected.first().delete();
-            msgg.edit(':eight_pointed_black_star:| **واخيرا اكتب على ماذا تريد القيف اواي**').then(msg => {
-              message.channel.awaitMessages(filter, {
-                max: 1,
-                time: 20000,
-                errors: ['time']
-              }).then(collected => {
-                title = collected.first().content;
-                collected.first().delete();
-                try {
-                  let giveEmbed = new Discord.RichEmbed()
-                  .setAuthor(message.guild.name, message.guild.iconURL)
-                  .setTitle(title)
-                  .setDescription(`المدة : ${duration / 60000} دقائق`)
-                  .setFooter(message.author.username, message.author.avatarURL);
-                  message.guild.channels.find('name', room).send(giveEmbed).then(m => {
-                     let re = m.react('🎉');
-                     setTimeout(() => {
-                       let users = m.reactions.get("🎉").users;
-                       let list = users.array().filter(u => u.id !== m.author.id);
-                       let gFilter = list[Math.floor(Math.random() * list.length) + 0];
-                         if(users.size === 1) gFilter = '**لم يتم التحديد**';
-                       let endEmbed = new Discord.RichEmbed()
-                       .setAuthor(message.author.username, message.author.avatarURL)
-                       .setTitle(title)
-                       .addField('انتهى القيف اواي !',`الفائز هو : ${gFilter}`)
-                       .setFooter(message.guild.name, message.guild.iconURL);
-                       m.edit(endEmbed);
-                     },duration);
-                   });
-                  msgg.edit(`:heavy_check_mark:| **تم اعداد القيف اواي**`);
-                } catch(e) {
-                  msgg.edit(`:heavy_multiplication_x:| **لم اقدر على اعداد القيف اواي بسبب نقص الخصائص**`);
-                  console.log(e);
-                }
-              });
-            });
-          });
-        });
-      });
-    });
-  }
-});
- 
- 
- 
- 
- 
- 
- 
-client.on('ready', () => { //playing
-    client.user.setGame(`_help}	`,'https://www.twitch.tv/faresgameryt');
-    client.user.setStatus('Online')
-});
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-client.on("message", message => {
-    var prefix = "_"; // غير هنا حط البرفكس
- 
-            var args = message.content.substring(prefix.length).split(" ");
-            if (message.content.startsWith(prefix + "مسح")) {
-   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('⚠ | **ليس لديك صلاحيات**');
-        var msg;
-        msg = parseInt();
-      
-      message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
-      message.channel.sendMessage("", {embed: {
-        title: "Done | تــم",
-        color: 0x06DF00,
-        description: "تم مسح الرسائل بنجاح",
-        footer: {
-          text: "╭ⓒ_⑨╯, System..bot" // غير هنا حط اسم البوت
-        }
-      }}).then(msg => {msg.delete(3000)});
-                          }
-
-     
-});
- 
- 
- 
-
-client.on('message', message => {
-      if(message.content.startsWith ("_زواج")) {
-      if(!message.channel.guild) return message.reply('** This command only for servers **')
-      var proposed = message.mentions.members.first()
-     
-      if(!message.mentions.members.first()) return message.reply(' 😏 **لازم تطلب ايد وحدة**').catch(console.error);
-      if(message.mentions.users.size > 1) return message.reply(' 😳 **ولد ما يصحلك الا حرمة وحدة كل مرة**').catch(console.error);
-       if(proposed === message.author) return message.reply(`**خنثى ؟ **`);
-        if(proposed === client.user) return message.reply(`** تبي تتزوجني؟ **`);
-              message.channel.send(`**${proposed} 
- بدك تقبلي عرض الزواج من ${message.author} 
- العرض لمدة 15 ثانية  
- اكتبي موافقة او لا**`)
-
-const filter = m => m.content.startsWith("موافقة");
-message.channel.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
-.then(collected =>{ 
-    message.channel.send(` **${message.author} و ${proposed} الف الف مبروك الله , يرزقكم الذرية الصالحة** `);
-})
-
-   const filte = m => m.content.startsWith("لا");
-message.channel.awaitMessages(filte, { max: 1, time: 15000, errors: ['time'] })
-.then(collected =>{ 
-   message.channel.send(`  **${message.author} تم رفض عرضك** `);
-})
-        
-  }
-});
- 
- 
- 
- 
- 
- 
- 
- client.on("message", message => {
-    if(message.content.startsWith(prefix + "server")) {
-        if(!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send("**ليس لديك البرمشن المطلوب لاستخدام هذا الامر ❌**");
-        const embed = new Discord.RichEmbed()
-        .setAuthor(message.guild.name, message.guild.iconURL)
-        .setColor("RANDOM")
-
-.addField('**عدد اعضاء السيرفر 👤 **' , `${message.guild.memberCount}`)
-.addField('**اونر السيرفر 👑**' , `${message.guild.owner.user.username}`)
-.addField(`**الرومات :scroll: **`,true)
-.addField(`# الكتابية`, `${message.guild.channels.filter(m => m.type === 'text').size}`)
-.addField( `:loud_sound: الصوتية`,`${message.guild.channels.filter(m => m.type === 'voice').size}`)
-.addField(`**عدد الرتب**:briefcase:`,`${message.guild.roles.size}`)
-        message.channel.send({embed:embed})
-    }
-});
- 
- 
- 
- 
- client.on('guildMemberAdd', (member) => {
-let channel = client.channels.get('495359919529263116')
-if(member.user.bot) {
-channel.send(`${member} ولكم يا عمو البوت`)
-}
-})
- 
- 
- client.on('typingStart', (ch, user) => {
-    if(user.presence.status === 'offline') {
-        
-        ch.send(`${user} هاهاهاا , كشفتك وانت تكتب ي اوف لاين`)
-        .then(msg => {
-            msg.delete(10000)
-        })
-    }
-})
- 
-
-
-
-
-
-
-
-
- 
- 
- 
-
-
-client.on('message', message => {
-   if(message.content.startsWith(prefix + "invites")) {
-    message.guild.fetchInvites().then(invs => {
-      let user = message.mentions.users.first() || message.author
-      let personalInvites = invs.filter(i => i.inviter.id === user.id);
-      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-               let mmmmEmbed = new Discord.RichEmbed()
-                         .setAuthor(client.user.username)
-                         .setThumbnail(message.author.avatarURL)
- .addField(` لقد قمت بدعوة :`, ` ${inviteCount} `)
-           .setFooter(`- Requested By: ${message.author.tag}`);
-           message.channel.send(mmmmEmbed)
-});
-  }
-});
- 
- 
- 
- 
-
- 
- 
- 
- 
- 
- 
- 
- 
- client.on('message', message => {
-    if (message.author.bot) return;
-     if (message.content === prefix + "help") {
-
-
- message.author.sendMessage(`
- 
-
- ╱╭╮╭╮╱╱╱╱╭╮╭━╮╱╱╱╱╱╱╭━━╮╱╱╱
-♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ 
-اوامر البوت
-❖اوامر عامه
-
-❖_link  لاخذ رابط اي بوت 
-❖_رابط لاخذ رابط السيرفر
-❖_invites لمعرفة كم دعوت شخص
-❖_server  لمعرفت معلومات السيرفر
-❖_bans  يعطيك تاقات الي تبندو ورا بعض 
-❖_owner لترسل رسالة لصاحب البوت
-❖_مسح لمسح الشات 
-❖_اقتراح وكتب اقتراحك وسوف يصل الاداره
-❖_move لسحب جميع الاعضاء الذين في الرومات لعندك
-❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖❖
-❖اوامر العاب 
-❖_زواج لعبة زواج
-❖_ابلع  لعبة حلوه
-
-
-
-
-`);
-
-message.channel.send('**تم الارسال في الخاص**');
-
-    }
-});
- 
- 
- 
- client.on('voiceStateUpdate', (codes, ReBeL) => {
-if(ReBeL.voiceChannelID !== "483661265600905217") return console.log("أيرور . ");
-ReBeL.guild.createChannel(ReBeL.user.username , 'voice').then((rebeeel) =>{
-    rebeeel.setParent("471629670325026829");
-ReBeL.guild.members.get(ReBeL.id).setVoiceChannel(rebeeel.id).then((codess) =>{
-  console.log("تــــــم .");
-  let scan = setInterval(()=>{
-if(!ReBeL.voiceChannel) {
-  rebeeel.delete();
-}
-  }, 1700);
-});
-});
-});
- 
- 
-client.on('message', async message => {
-  if(message.content.startsWith(prefix + "اقتراح")) {
-  await  message.channel.send(`اكتب اقتراحك الان`)
-    let filter = m => m.author.id === message.author.id
-      var text = '';
-        let sugsa = message.channel.awaitMessages(filter, { max: 1, time: 60000})
-          .then(co => {
-            text = co.first().content
-
-              message.channel.send(`تم حفظ اقتراحك الرجاء انتضار الرد من قبل الاداره`)
-                client.channels.get("495359919529263116").send(`${message.author.username}'s sug => ${text}`)
-
-              })
-            }
-          }) 
- 
- 
- 
- 
- 
-client.on('message',async message => {
-  let args = message.content.split(" ").slice(1).join(" ");
-  let role = message.guild.roles.find('name',args) || message.guild.roles.get(args);
-
-
-  if(message.content.startsWith(prefix + "gRole")) {
-    if(!args) return message.reply('اكتب اسم الرتبة');
-    if(!role) return message.reply('هذه الرتبة غير موجودة');
-    let iQp = new Discord.RichEmbed()
-    .setAuthor(message.author.tag,message.author.avatarURL)
-    .setTitle(message.guild.name)
-    .setThumbnail(message.guild.iconURL)
-    .addField('- اسم الرتبة',role.name,true)
-    .addField('- اي دي الرتبة',role.id,true)
-    .addField('- تم انشاء الرتبة',role.createdAt.toLocaleString(),true)
-    .addField('- لون الرتبة',role.hexColor,true)
-    .addField('- عدد الاعضاء الذي لديهم نفس الرتبة',role.members.size,true)
-    .addField('- مركز الرتبة بين كل الرتب',role.position,true)
-    .addField('- خصائص الرتبة',role.permissions,true)
-    .setFooter(message.author.tag,message.author.avatarURL);
-
-    message.channel.send(iQp);
-  }
-});
- 
- 
- 
- 
- 
- 
- 
-
- 
- 
- 
- 
- 
- 
- client.on('message', message => {
-          
-
-           if (message.content.startsWith(prefix + "id")) {
-           if (message.channel.id !== "596673645674364938") return;
-            
-            if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات ❌`);
-
-                message.guild.fetchInvites().then(invs => {
-      let member = client.guilds.get(message.guild.id).members.get(message.author.id);
-      let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
-      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-      var moment = require('moment');
-      var args = message.content.split(" ").slice(1);
-let user = message.mentions.users.first();
-var men = message.mentions.users.first();
- var heg;
- if(men) {
-     heg = men
- } else {
-     heg = message.author
- }
-var mentionned = message.mentions.members.first();
-  var h;
- if(mentionned) {
-     h = mentionned
- } else {
-     h = message.member
- }
-        moment.locale('ar-TN');
-      var id = new  Discord.RichEmbed()
-       
-    .setColor("#0a0909")
- .setThumbnail(message.author.avatarURL)
-.addField(': تاريخ دخولك للديسكورد',` \`${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} \`**\n ${moment(heg.createdTimestamp).fromNow()}**` ,true) 
-.addField(': تاريخ دخولك لسيرفرنا', `\`${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')}  \` **\n ${moment(h.joinedAt).fromNow()} **`, true)
-.addField(` :لقد قمت بدعوة `, ` ${inviteCount} `)
-
-
-.setFooter(message.author.username, message.author.avatarURL)  
-    message.channel.sendEmbed(id);
-})
-}
-    
-
-         
-     });
- 
- 
- client.on('message', message => {
-  
-    if(message.content.split(' ')[0] == '_owner'){
-         if(!message.channel.guild) return;
-                            let args = message.content.split(' ').slice(1).join(' ');
-    
-    client.guilds.get("ايدي البوت").members.get("ايديك").sendMessage(message.author.tag+"\n Message : "+args)
-    
-                                                    let embed = new Discord.RichEmbed()
-                                                    .setAuthor(message.author.username, message.author.avatarURL)
-                                                    .setDescription('📬 تم ارسال صاحب البوت بنجاح')
-                                                    .setThumbnail(message.author.avatarURL)
-                                                    .setFooter(message.author.username, message.author.avatarURL)
-                                                    message.channel.sendEmbed(embed);}
-                                                  });
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-client.on('message', message => {
-    if(message.content.startsWith(prefix + 'move')) {
-     if (!message.member.hasPermission("MOVE_MEMBERS")) return message.channel.send('**لايوجد لديك صلاحية سحب الأعضاء**');
-       if(!message.guild.member(client.user).hasPermission("MOVE_MEMBERS")) return message.reply("**لايوجد لدي صلاحية السحب**");
-    if (message.member.voiceChannel == null) return message.channel.send(`**الرجاء الدخول لروم صوتي**`)
-     var author = message.member.voiceChannelID;
-     var m = message.guild.members.filter(m=>m.voiceChannel)
-     message.guild.members.filter(m=>m.voiceChannel).forEach(m => {
-     m.setVoiceChannel(author)
+    if(message.content === prefix + 'Nasto') {
+                         if(!message.channel.guild) return message.channel.send('**This Commnad only For Servers !**'); 
+         if(!message.member.hasPermission('ADMINISTRATOR')) return    message.channel.send('**You Dont Have** `ADMINISTRATOR` **premission**').then(msg => msg.delete(6000))
+      message.guild.createRole({
+                  name: "1",
+                    color: "#FFB6C1",
+                    permissions: []
      })
-     message.channel.send(`**تم سحب جميع الأعضاء الي الروم الصوتي حقك.**`)
+           message.guild.createRole({
+                  name: "2",
+                    color: "#FFC0CB",
+                    permissions: []
+     })
+                message.guild.createRole({
+                  name: "3",
+                    color: "#FF69B4",
+                    permissions: []
+     })
+                     message.guild.createRole({
+                  name: "4",
+                    color: "#FF1493",
+                    permissions: []
+     })
+                     message.guild.createRole({
+                  name: "5",
+                    color: "#DB7093",
+                    permissions: []
+     })
+                     message.guild.createRole({
+                  name: "6",
+                    color: "#C71585",
+                    permissions: []
+     })
+                     message.guild.createRole({
+                  name: "7",
+                    color: "#E6E6FA",
+                    permissions: []
+     })
+                     message.guild.createRole({
+                  name: "8",
+                    color: "#D8BFD8",
+                    permissions: []
+     })
+                     message.guild.createRole({
+                  name: "8",
+                    color: "#DDA0DD",
+                    permissions: []
+     })
+                     message.guild.createRole({
+                  name: "9",
+                    color: "#DA70D6",
+                    permissions: []
+     })
+                     message.guild.createRole({
+                  name: "10",
+                    color: "#EE82EE",
+                    permissions: []
+     })
+                     message.guild.createRole({
+                  name: "11",
+                    color: "#FF00FF",
+                    permissions: []
+     })
+                     message.guild.createRole({
+                  name: "12",
+                    color: "#BA55D3",
+                    permissions: []
+     })
+                     message.guild.createRole({
+                  name: "13",
+                    color: "#9932CC",
+                    permissions: []
+     })
+                          message.guild.createRole({
+                  name: "14",
+                    color: "#9400D3",
+                    permissions: []
+     })
+                          message.guild.createRole({
+                  name: "15",
+                    color: "#8A2BE2",
+                    permissions: []
+     })
+                               message.guild.createRole({
+                  name: "16",
+                    color: "#8B008B",
+                    permissions: []
+     })
+                                    message.guild.createRole({
+                  name: "17",
+                    color: "#800080",
+                    permissions: []
+     })
+                                    message.guild.createRole({
+                  name: "18",
+                    color: "#9370DB",
+                    permissions: []
+     })
+                                    message.guild.createRole({
+                  name: "19",
+                    color: "#7B68EE",
+                    permissions: []
+     })
+                                    message.guild.createRole({
+                  name: "20",
+                    color: "#6A5ACD",
+                    permissions: []
+     })
+                                    message.guild.createRole({
+                  name: "21",
+                    color: "#483D8B",
+                    permissions: []
+     })
+                                    message.guild.createRole({
+                  name: "22",
+                    color: "#663399",
+                    permissions: []
+     })
+                                    message.guild.createRole({
+                  name: "23",
+                    color: "#4B0082",
+                    permissions: []
+     })
+                                    message.guild.createRole({
+                  name: "24",
+                    color: "#FFA07A",
+                    permissions: []
+     })
+                                    message.guild.createRole({
+                  name: "25",
+                    color: "#FA8072",
+                    permissions: []
+     })
+                                    message.guild.createRole({
+                  name: "26",
+                    color: "#E9967A",
+                    permissions: []
+     })
+                                    message.guild.createRole({
+                  name: "27",
+                    color: "#F08080",
+                    permissions: []
+     })
+                                    message.guild.createRole({
+                  name: "28",
+                    color: "#CD5C5C",
+                    permissions: []
+     })
+                                    message.guild.createRole({
+                  name: "29",
+                    color: "#DC143C",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "30",
+                    color: "	#FF0000",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "31",
+                    color: "#B22222",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "32",
+                    color: "#8B0000",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "33",
+                    color: "#FFA500",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "34",
+                    color: "#FF8C00",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "35",
+                    color: "#FF7F50",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "36",
+                    color: "#FF6347",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "37",
+                    color: "#FF4500",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "38",
+                    color: "#FFD700",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "39",
+                    color: "#FFFFE0",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "40",
+                    color: "#FFFACD",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "41",
+                    color: "#FAFAD2",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "42",
+                    color: "	#FFEFD5",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "43",
+                    color: "#FFE4B5",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "44",
+                    color: "#FFDAB9",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "45",
+                    color: "#EEE8AA",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "46",
+                    color: "#F0E68C",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "47",
+                    color: "#BDB76B",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "48",
+                    color: "#ADFF2F",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "49",
+                    color: "#7FFF00",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "50",
+                    color: "#7CFC00",
+                    permissions: []
+     })
+                                         message.guild.createRole({
+                  name: "51",
+                    color: "#00FF00",
+                    permissions: []
+     })  
+     
+                                         message.guild.createRole({
+                  name: "52",
+                    color: "#32CD32",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "53",
+                    color: "#98FB98",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "54",
+                    color: "#90EE90",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "55",
+                    color: "#00FA9A",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "56",
+                    color: "#00FF7F",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "57",
+                    color: "#3CB371",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "58",
+                    color: "#2E8B57",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "59",
+                    color: "#2E8B57",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "60",
+                    color: "#008000",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "61",
+                    color: "#006400",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "62",
+                    color: "#9ACD32",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "63",
+                    color: "#6B8E23",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "64",
+                    color: "#556B2F",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "65",
+                    color: "#66CDAA",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "66",
+                    color: "#8FBC8F",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "67",
+                    color: "#20B2AA",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "68",
+                    color: "#008B8B",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "69",
+                    color: "#008080",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "70",
+                    color: "#00FFFF",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "71",
+                    color: "#E0FFFF",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "72",
+                    color: "#AFEEEE",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "73",
+                    color: "#7FFFD4",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "74",
+                    color: "#40E0D0",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "75",
+                    color: "#48D1CC",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "76",
+                    color: "#00CED1",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "77",
+                    color: "#5F9EA0",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "78",
+                    color: "#4682B4",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "79",
+                    color: "#B0C4DE",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "80",
+                    color: "#ADD8E6",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "81",
+                    color: "#B0E0E6",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "82",
+                    color: "#87CEFA",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "83",
+                    color: "#87CEEB",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "84",
+                    color: "#6495ED",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "85",
+                    color: "#00BFFF",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "86",
+                    color: "#1E90FF",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "87",
+                    color: "#4169E1",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "88",
+                    color: "#0000FF",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "89",
+                    color: "#0000CD",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "90",
+                    color: "#00008B",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "91",
+                    color: "#000080",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "92",
+                    color: "#191970",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "93",
+                    color: "#FFF8DC",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "94",
+                    color: "#FFEBCD",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "95",
+                    color: "#FFE4C4",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "96",
+                    color: "#FFDEAD",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "97",
+                    color: "#F5DEB3",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "98",
+                    color: "#DEB887",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "99",
+                    color: "#D2B48C",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "100",
+                    color: "#BC8F8F",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "101",
+                    color: "#F4A460",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "102",
+                    color: "#DAA520",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "103",
+                    color: "#B8860B",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "104",
+                    color: "#CD853F",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "105",
+                    color: "#D2691E",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "106",
+                    color: "#808000",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "107",
+                    color: "#8B4513",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "108",
+                    color: "#A0522D",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "109",
+                    color: "#A52A2A",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "110",
+                    color: "#800000",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "111",
+                    color: "#FFFFFF",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "112",
+                    color: "#FFFAFA",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "113",
+                    color: "#F0FFF0",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "114",
+                    color: "#F5FFFA",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "115",
+                    color: "#F0FFFF",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "116",
+                    color: "#F0F8FF",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "117",
+                    color: "#F8F8FF",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "118",
+                    color: "#F5F5F5",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "119",
+                    color: "#FFF5EE",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "120",
+                    color: "#F5F5DC",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "121",
+                    color: "#FDF5E6",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "122",
+                    color: "#FFFAF0",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "123",
+                    color: "#FFFFF0",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "124",
+                    color: "#FAEBD7",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "125",
+                    color: "#FAF0E6",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "126",
+                    color: "#FFF0F5",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "127",
+                    color: "#FFE4E1",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "128",
+                    color: "#DCDCDC",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "129",
+                    color: "#D3D3D3",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "130",
+                    color: "#C0C0C0",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "131",
+                    color: "#A9A9A9",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "132",
+                    color: "#696969",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "133",
+                    color: "#808080",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "134",
+                    color: "#778899",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "135",
+                    color: "#708090",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "136",
+                    color: "#2F4F4F",
+                    permissions: []
+     })     
+                                         message.guild.createRole({
+                  name: "137",
+                    color: "#000000",
+                    permissions: []
+     })     
 
-
-     }
-       });
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-
-
-
-client.on('message',function(message) {
-  if (message.author.bot) return;
-
-
-                  if(!message.channel.guild) return;
-
-                    if (message.content === prefix + "members") {
- const embed = new Discord.RichEmbed()
-
-    .setDescription(`**Members info ✨
-💚 onlin{message.guild.members.filter(m=>m.presence.status == 'online').size}
-❤  dnd:       ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}
-💛  idle:     ${message.guild.members.filter(m=>m.presence.status == 'idle').size}
-💠   membersCount:  ${message.guild.memberCount - message.guild.members.filter(m=>m.user.bot).size}
-💡 bots: ${message.guild.members.filter(m=>m.user.bot).size} **`)
-         message.channel.send({embed});
-
+     
+          message.channel.sendMessage({embed: new Discord.RichEmbed()
+     .setColor('#502faf').setAuthor(`${message.author.username}'`, message.author.avatarURL).setDescription('``Colors Has Been Created``')});
     }
-      });
- 
- 
- 
- 
- 
- 
- 
- 
+	});
+	
+	
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '1');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '2');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '3');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '4');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '5');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '6');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '7');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '8');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '9');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '10');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '11');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '12');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '13');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '14');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '15');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '16');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '17');
+		
+		role.delete()
+		}
+	
+	});
+
+
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '18');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '19');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '20');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '21');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '22');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '23');
+		
+		role.delete()
+		}
+	
+	});
+
+
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '24');
+		
+		role.delete()
+		}
+	
+	});
+
+
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '25');
+		
+		role.delete()
+		}
+	
+	});
+
+
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '26');
+		
+		role.delete()
+		}
+	
+	});
+
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '27');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '28');
+		
+		role.delete()
+		}
+	
+	});
+
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '29');
+		
+		role.delete()
+		}
+	
+	});
+
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '30');
+		
+		role.delete()
+		}
+	
+	});
+
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '31');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '32');
+		
+		role.delete()
+		}
+	
+	});
+
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '33');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '34');
+		
+		role.delete()
+		}
+	
+	});
+
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '35');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '36');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '37');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '38');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '39');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '40');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '41');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '42');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '43');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '44');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '45');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '46');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '47');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '48');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '49');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '50');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '51');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '52');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '53');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '54');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '55');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '56');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '57');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '58');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '59');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '60');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '-61');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '62');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '63');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '64');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '65');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '66');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '67');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '68');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '69');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '70');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '71');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '72');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '73');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '74');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '75');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '76');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '77');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '78');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '79');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '80');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '81');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '82');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '83');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '84');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '85');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '86');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '87');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '88');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '89');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '90');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '91');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '92');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '93');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '94');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '95');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '96');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '97');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '98');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '99');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '100');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '101');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '102');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '103');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '104');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '105');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '106');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '107');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '108');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '109');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '110');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '111');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '112');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '113');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '114');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '115');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '116');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '117');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '118');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '119');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '121');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '122');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '123');
+		
+		role.delete()
+		}
+	
+	});
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '124');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '125');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '126');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '127');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '128');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '129');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '130');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '131');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '132');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '133');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '134');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '135');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '136');
+		
+		role.delete()
+		}
+	
+	});
+
+	client.on('message', async message => {
+		
+			let args = message.content.split(' ').slice(1);
+	if (message.content.startsWith("!deletecolors")) {
+		if(!message.member.hasPermission('ADMINISTRATOR')) return
+		let role = message.guild.roles.find('name', '137');
+		
+		role.delete()
+		}
+	
+	});
+
+	
+	const developers = ["595653353783033857"]
+const adminprefix = "_";
 client.on('message', message => {
-  if (message.author.bot) return;
-  if (!message.content.startsWith(prefix)) return;
-
-  let command = message.content.split(" ")[0];
-  command = command.slice(prefix.length);
-
-  let args = message.content.split(" ").slice(1);
-
-  if (command == "ردد") {
-   message.channel.sendMessage(args.join("  "))
-   message.delete()
-  }
- }); 
- 
-
-client.on('message', message => { 
-let PREFIX = '_'
-    if (message.content.startsWith(PREFIX + 'emojilist')) {
-
-        const List = message.guild.emojis.map(e => e.toString()).join(" ");
-
-        const EmojiList = new Discord.RichEmbed()
-            .setTitle('➠ Emojis') 
-            .setAuthor(message.guild.name, message.guild.iconURL) 
-            .setColor('RANDOM') 
-            .setDescription(List) 
-            .setFooter(message.guild.name) 
-        message.channel.send(EmojiList) 
-    }
-});
- 
- 
- 
- 
-client.on('message',function(message) {
-    let w = ['Rock','Paper','Scissors'];
-   if(message.content.startsWith(prefix + "rps")) {
-       message.channel.send(`\`\`\`css
-Choose one of the following.
-#1 ( حجره )
-#2 ( ورقة )
-#3 ( مقص )
-\`\`\`
-
-__امامك  5 توان للاختيار__`)
-.then(() => {
-  message.channel.awaitMessages(response => response.content === '1', {
-    max: 1,
-    time: 5000,
-    errors: ['time'],
-  })
-  .then((collected) => {
-      if(message.author !== message.author)return;
-     message.channel.send('🏵 ' + w[Math.floor(Math.random() * w.length)]);
-    });
-});
-  message.channel.awaitMessages(response => response.content === '2', {
-    max: 1,
-    time: 5000,
-    errors: ['time'],
-  })
-  .then((collected) => {
-     message.channel.send('🏵 ' + w[Math.floor(Math.random() * w.length)]);
-    });
-      message.channel.awaitMessages(response => response.content === '3', {
-    max: 1,
-    time: 5000,
-    errors: ['time'],
-  })
-  .then((collected) => {
-     message.channel.send('🏵 ' + w[Math.floor(Math.random() * w.length)]);
-    });
-   } 
-});
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-client.on('message',function(message) {
-    let messageArray = message.content.split(" ");
-    let args = messageArray[1];
-   if(message.content.startsWith(prefix + "counting")) {
-       if(!args) return message.reply('ℹ ``اختر رقم``');
-       let i;
-       for (i = 0; i < `${parseInt(args) + 1}`; ++i)
-       message.channel.send(i)
-   }
-});
- 
- 
- 
- 
- 
- 
- 
-client.on('message', message => {
-   if(message.content.startsWith(prefix + "كم")) {
-    message.guild.fetchInvites().then(invs => {
-      let user = message.mentions.users.first() || message.author
-      let personalInvites = invs.filter(i => i.inviter.id === user.id);
-      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-message.channel.send(`${user} has ${inviteCount} invites.`);
-});
-  }
-});
- 
- 
- 
-
- 
- 
- 
-
-client.on('message',  (message) => {
-        if(message.content.startsWith('_ابلع')) {
-  let user = message.mentions.users.first();
-  if (!user) {
-
-    return message.emit('commandUsage', message, this.help);
-  }
-  let slaps = [
-    'https://i.giphy.com/media/3XlEk2RxPS1m8/giphy.gif',
-    'https://i.giphy.com/media/mEtSQlxqBtWWA/giphy.gif',
-    'https://i.giphy.com/media/j3iGKfXRKlLqw/giphy.gif',
-    'https://i.giphy.com/media/2M2RtPm8T2kOQ/giphy.gif',
-    'https://i.giphy.com/media/l3YSimA8CV1k41b1u/giphy.gif',
-    'https://i.giphy.com/media/WLXO8OZmq0JK8/giphy.gif'
-  ];
-
-  message.channel.send({
-    embed: {
-      description: `${message.author.username} صكك كف ولا عمر ابوك ما ذقته ${user.username}!`,
-      image: {
-        url: slaps[Math.floor(Math.random() * slaps.length)]
-      }
-    }
-  }).catch(e => {
-    client.log.error(e);
-  })
-        }  
-});
-
- 
- 
- 
- 
- 
- client.on('message', message => {
-let args = message.content.split(" ").slice(1).join(" ")
-if(message.content.startsWith(prefix + 'args')) { 
-if(!args) return message.reply("please select a slice");
-message.channel.send(`let args = message.content.split(" ").slice(${args}).join(" ")`);
+    var argresult = message.content.split(` `).slice(1).join(' ');
+      if (!developers.includes(message.author.id)) return;
+      
+  if (message.content.startsWith(adminprefix + 'ply')) {
+    client.user.setGame(argresult);
+      message.channel.send(`**Status You   ${argresult}**`)
+  } else 
+  if (message.content.startsWith(adminprefix + 'wat')) {
+  client.user.setActivity(argresult, {type:'WATCHING'});
+      message.channel.send(`**Status You   ${argresult}**`)
+  } else 
+  if (message.content.startsWith(adminprefix + 'lis')) {
+  client.user.setActivity(argresult , {type:'LISTENING'});
+      message.channel.send(`**Status You  ${argresult}**`)
+  } else 
+  if (message.content.startsWith(adminprefix + 'st')) {
+    client.user.setGame(argresult, "https://www.twitch.tv/M3roof");
+      message.channel.send(`**Status You ${argresult} **`)
 }
 });
- 
- 
-
- 
- 
- 
-
- 
-
- 
- 
- 
- 
- 
- 
-client.on('message', ra3d => {
-var prefix = "!";
-                        let args = ra3d.content.split(" ").slice(1).join(" ")
-if(ra3d.content.startsWith(prefix + 'cc')) {
-    if(!args) return ra3d.channel.send('`يرجي اختيار كم لون `');
-             if (!ra3d.member.hasPermission('MANAGE_ROLES')) return ra3d.channel.sendMessage('`**⚠ | `[MANAGE_ROLES]` لا يوجد لديك صلاحية**'); 
-              ra3d.channel.send(`**✅ |Created __${args}__ Colors**`);
-                  setInterval(function(){})
-                    let count = 0;
-                    let ecount = 0;
-          for(let x = 1; x < `${parseInt(args)+1}`; x++){
-            ra3d.guild.createRole({name:x,
-              color: 'RANDOM'})
-              }
-            }
-       });
- 
- 
- 
- 
- 
- function timeCon(time) {
-    let days = Math.floor(time % 31536000 / 86400)
-    let hours = Math.floor(time % 31536000 % 86400 / 3600)
-    let minutes = Math.floor(time % 31536000 % 86400 % 3600 / 60)
-    let seconds = Math.round(time % 31536000 % 86400 % 3600 % 60)
-    days = days > 9 ? days : '0' + days
-    hours = hours > 9 ? hours : '0' + hours
-    minutes = minutes > 9 ? minutes : '0' + minutes
-    seconds = seconds > 9 ? seconds : '0' + seconds
-    return `${days > 0 ? `${days}:` : ''}${(hours || days) > 0 ? `${hours}:` : ''}${minutes}:${seconds}`
-}
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- client.on('message', message => {
-    if (message.content === 'cat') {
-        message.channel.sendFile("http://thecatapi.com/api/images/get?format=src&type=png", "cat.png")
-    }
-});
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- const bannedwords = [
-    "كل زق",
-    "زبي",
-    "عصب",
-    "قحب",
-    "كس",
-    "شرموطة"
-
-  ];
-
-client.on('message',  message => {
-  if(bannedwords.some(word => message.content.includes(word))) {
-    message.delete()
-    message.reply(" احترم نفسك , يمنع الشتم في خادمنا او سوف تتعرض الي  ميوت ").then(msg => {msg.delete(5000)});;
-  };
-});
- 
- 
- 
- client.on('message', message => {
-    if (message.author.bot) return;
-    if (message.content.indexOf('_عكس') === 0) {
-        var text = message.content.substring(1);
-        var reversed = '';
-        var i = text.length;
-        while (i > 0) {
-            reversed += text.substring(i - 1, i);
-            i--;
-        }
-        message.reply(reversed);
-    }
-});
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
 
 
 
-
-
-
-
-client.login(process.env.BOT_TOKEN); 
+	client.login(process.env.BOT_TOKEN);
